@@ -21540,3 +21540,8 @@ label {
 .table-responsive-md {
   margin: 50px;
 }
+
+.table-responsive-class {
+  margin: auto;
+  width: 50% !important;
+}
