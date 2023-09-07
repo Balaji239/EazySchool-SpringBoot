@@ -60,4 +60,8 @@ public class Person extends BaseEntity{
     @JoinColumn(name = "address_id")
     private Address address;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "class_id", referencedColumnName = "classId")
+    private EazyClass eazyClass;
+
 }

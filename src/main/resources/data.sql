@@ -31,3 +31,10 @@ INSERT INTO `roles` (`role_name`,`created_at`, `created_by`)
   VALUES ('STUDENT',CURDATE(),'DBA');
 
 --PERSON TABLE
+INSERT INTO `PERSON` (`name`,`email`, `mobile_number`,`password`,`role_id`,`created_at`, `created_by`)
+  VALUES ('Admin1','admin1@gmail.com','1234567891','$2a$12$L6w7QUqOzcskblGj4vkom.AIH0KHXAbWCmd.1ceZnDvyR1OjvAiQG',1,CURDATE(),'DBA');
+
+INSERT INTO `PERSON` (`name`,`email`, `mobile_number`,`password`,`role_id`,`created_at`, `created_by`)
+  VALUES ('Balaji','baji239@gmail.com','8310850942','$2a$12$M1M1Kh80T6RVedVhM7nsW.u57BM8igW4cYgU1jLUf5rO0lbEFmx/a',2,CURDATE(),'DBA');
+
+

@@ -17,13 +17,15 @@ public class SecurityConfig  {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().ignoringRequestMatchers("/saveMsg").ignoringRequestMatchers("/public/**").ignoringRequestMatchers(PathRequest.toH2Console())
+                .ignoringRequestMatchers("/admin/**")
                 .and().authorizeHttpRequests()
-                .requestMatchers("/dashboard").authenticated()
                 .requestMatchers(PathRequest.toH2Console()).permitAll()
-                .requestMatchers("/displayMessages").hasRole("ADMIN")
-                .requestMatchers("/closeMsg/**").hasRole("ADMIN")
+                .requestMatchers("/dashboard").authenticated()
                 .requestMatchers("/displayProfile").authenticated()
                 .requestMatchers("/updateProfile").authenticated()
+                .requestMatchers("/admin/**").permitAll()
+                .requestMatchers("/displayMessages").hasRole("ADMIN")
+                .requestMatchers("/closeMsg/**").hasRole("ADMIN")
                 .requestMatchers("/home").permitAll()
                 .requestMatchers("/public/**").permitAll()
                 .requestMatchers("/").permitAll()
