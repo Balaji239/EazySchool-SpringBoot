@@ -92,7 +92,7 @@ public class AdminController {
 
     @GetMapping("/displayCourses")
     public String displayCourses(Model model){
-        List<Course> courses = coursesRepository.findAll();
+        List<Course> courses = coursesRepository.findByOrderByName();
         model.addAttribute("courses", courses);
         model.addAttribute("course", new Course());
         return "courses_secure";

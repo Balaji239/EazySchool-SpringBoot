@@ -25,7 +25,7 @@ public class SecurityConfig  {
                 .requestMatchers("/updateProfile").authenticated()
                 .requestMatchers("/admin/**").hasAnyRole("ADMIN")
                 .requestMatchers("/student/**").hasAnyRole("STUDENT")
-                .requestMatchers("/displayMessages").hasRole("ADMIN")
+                .requestMatchers("/displayMessages/**").hasRole("ADMIN")
                 .requestMatchers("/closeMsg/**").hasRole("ADMIN")
                 .requestMatchers("/home").permitAll()
                 .requestMatchers("/public/**").permitAll()

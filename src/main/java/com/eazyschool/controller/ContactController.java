@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,20 +34,6 @@ public class ContactController {
         return "contact";
     }
 
-//    @RequestMapping(value="/saveMsg", method = POST)
-//    public ModelAndView sendMessage(@RequestParam String name, @RequestParam String mobileNum, @RequestParam String email,
-//                                    @RequestParam String subject, @RequestParam String message){
-//
-//        logger.info("Name : "+name);
-//        logger.info("Mobile : "+mobileNum);
-//        logger.info("Email : "+email);
-//        logger.info("Subject : "+subject);
-//        logger.info("Message : "+message);
-//        return new ModelAndView("redirect:/contact");
-//    }
-
-    // OR
-
     @PostMapping("/saveMsg")
     public String sendMessage(@Valid @ModelAttribute("contact") Contact contact, Errors errors){
         if(errors.hasErrors()){
@@ -56,17 +43,23 @@ public class ContactController {
         return "redirect:/contact";
     }
 
-    @GetMapping("/displayMessages")
-    public ModelAndView displayMessages(Model model){
-        List<Contact> contacts = contactService.getAllOpenStatusMessages();
-        ModelAndView modelAndView = new ModelAndView("messages.html");
-        modelAndView.addObject("contactMsgs", contacts);
-        return modelAndView;
+    @GetMapping("/displayMessages/page/{pageNum}")
+    public String displayMessages(Model model, @PathVariable int pageNum, @RequestParam String sortDir, @RequestParam String sortField){
+        Page<Contact> messagePage = contactService.findMessagesWithOpenStatus(pageNum,sortField, sortDir);
+        List<Contact> contactList = messagePage.getContent();
+        model.addAttribute("contactMsgs", contactList);
+        model.addAttribute("currentPage", pageNum);
+        model.addAttribute("totalPages", messagePage.getTotalPages());
+        model.addAttribute("totalMsgs", messagePage.getTotalElements());
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortFir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+        return "messages";
     }
 
     @GetMapping("/closeMsg")
     public String closeMessage(@RequestParam int id, Authentication authentication){
-        contactService.updateMsgStatus(id, authentication.getName());
-        return "redirect:/displayMessages";
+        contactService.updateMsgStatus(id);
+        return "redirect:/displayMessages/page/1?sortField=name&sortDir=desc";
     }
 }
