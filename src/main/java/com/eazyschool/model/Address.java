@@ -33,7 +33,4 @@ public class Address extends BaseEntity{
     @NotBlank
     private String zipCode;
 
-
-
-
 }

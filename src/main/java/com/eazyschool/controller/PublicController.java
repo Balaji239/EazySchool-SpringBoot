@@ -1,7 +1,6 @@
 package com.eazyschool.controller;
 
 import com.eazyschool.model.Person;
-import com.eazyschool.repository.PersonRepository;
 import com.eazyschool.service.PersonService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

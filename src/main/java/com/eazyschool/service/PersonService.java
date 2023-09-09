@@ -22,12 +22,12 @@ public class PersonService {
     private PasswordEncoder passwordEncoder;
 
     public boolean createNewPerson(Person person){
-        boolean isSaved = false;
+        boolean isSaved;
         Role role = rolesRepository.getByRoleName(EazySchoolConstant.STUDENT.toString());
         person.setRole(role);
         person.setPassword(passwordEncoder.encode(person.getPassword()));
         person = personRepository.save(person);
-        isSaved = person != null && person.getPersonId() > 0;
-        return  isSaved;
+        isSaved = person.getPersonId() > 0;
+        return isSaved;
     }
 }

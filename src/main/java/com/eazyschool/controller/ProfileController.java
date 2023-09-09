@@ -22,7 +22,7 @@ public class ProfileController {
     private PersonRepository personRepository;
 
     @GetMapping("/displayProfile")
-    public ModelAndView displayProfile(Model model, HttpSession session){
+    public ModelAndView displayProfile(HttpSession session){
         Person person = (Person) session.getAttribute("loggedInPerson");
         Profile profile = new Profile();
         profile.setName(person.getName());

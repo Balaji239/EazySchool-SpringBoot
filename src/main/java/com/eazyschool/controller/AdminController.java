@@ -7,7 +7,6 @@ import com.eazyschool.repository.ClassRepository;
 import com.eazyschool.repository.CoursesRepository;
 import com.eazyschool.repository.PersonRepository;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,13 +37,13 @@ public class AdminController {
     }
 
     @PostMapping("/addNewClass")
-    public String addNewClass(Model model, @ModelAttribute EazyClass eazyClass){
+    public String addNewClass(@ModelAttribute EazyClass eazyClass){
         classRepository.save(eazyClass);
         return "redirect:/admin/displayClasses";
     }
 
     @RequestMapping("/deleteClass")
-    public String deleteClass(Model model, @RequestParam int id){
+    public String deleteClass(@RequestParam int id){
         Optional<EazyClass> eazyClass = classRepository.findById(id);
         for(Person person : eazyClass.get().getPersons()){
             person.setEazyClass(null);
@@ -65,7 +64,7 @@ public class AdminController {
     }
 
     @PostMapping("/addStudent")
-    public String addStudent(Model model, @ModelAttribute Person person, @RequestParam int classIdParam){
+    public String addStudent(@ModelAttribute Person person, @RequestParam int classIdParam){
         System.out.println(classIdParam);
         Optional<EazyClass> eazyClass = classRepository.findById(classIdParam);
         Person personEntity = personRepository.getByEmail(person.getEmail());
@@ -80,7 +79,7 @@ public class AdminController {
     }
 
     @GetMapping("/deleteStudent")
-    public String deleteStudent(Model model, @RequestParam int personId, HttpServletRequest request){
+    public String deleteStudent(@RequestParam int personId, HttpServletRequest request){
         String classId = request.getParameter("classId");
         EazyClass eazyClass = classRepository.findById(Integer.parseInt(classId)).get();
         Optional<Person> person = personRepository.findById(personId);
@@ -130,7 +129,7 @@ public class AdminController {
     }
 
     @GetMapping("/deleteStudentFromCourse")
-    public String deleteStudentFromCourse(Model model, @RequestParam int personId, @RequestParam int courseId) {
+    public String deleteStudentFromCourse(@RequestParam int personId, @RequestParam int courseId) {
         Course course = coursesRepository.findById(courseId).get();
         Optional<Person> person = personRepository.findById(personId);
         person.get().getCourses().remove(course);
