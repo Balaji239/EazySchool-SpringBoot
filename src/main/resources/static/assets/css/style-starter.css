@@ -21522,6 +21522,7 @@ h4.inner-text-title {
   line-height: 1;
   font-weight: 900 !important;
   text-align: left;
+  margin-bottom: 8px
 }
 
 .site-section {
@@ -21545,9 +21546,22 @@ label {
   margin: 50px;
 }
 
+@media only screen and (max-width: 500px) {
+  .table-responsive-md {
+    margin: 15px;
+  }
+}
+
 .table-responsive-class {
   margin: auto;
   width: 50% !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .table-responsive-class {
+    margin: auto;
+    width: 95% !important;
+  }
 }
 
 table.dataTable > thead > tr > th:not(.sorting_disabled),

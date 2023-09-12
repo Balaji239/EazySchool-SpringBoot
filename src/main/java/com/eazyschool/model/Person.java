@@ -38,23 +38,23 @@ public class Person extends BaseEntity{
     @GenericGenerator(name = "native", strategy = "native")
     private int personId;
 
-    @NotBlank @Size(min = 5)
+    @NotBlank(message = "Name cannot be empty") @Size(min = 5, message = "Name must be least 5 characters")
     private String name;
 
-    @NotBlank @Pattern(regexp = "(^$|[0-9]{10})")
+    @NotBlank(message = "Contact number cannot be empty") @Pattern(regexp = "(^$|[0-9]{10})", message = "Please enter valid Contact number")
     private String mobileNumber;
 
-    @NotBlank @Email
+    @NotBlank(message = "Email cannot be empty") @Email(message = "Please enter valid email")
     private String email;
 
-    @NotBlank
-    @Email @Transient
+    @NotBlank(message = "Please confirm email")
+    @Email(message = "Please enter valid email") @Transient
     private String confirmEmail;
 
-    @NotBlank @Size(min = 5) @PasswordValidator
+    @NotBlank(message = "Password cannot be empty") @Size(min = 5 ,message = "Password must contain atleast 5 characters") @PasswordValidator
     private String password;
 
-    @NotBlank @Size(min = 5) @Transient
+    @NotBlank(message = "Please confirm password") @Size(min = 5) @Transient
     private String confirmPassword;
 
     @OneToOne(cascade = CascadeType.PERSIST)
