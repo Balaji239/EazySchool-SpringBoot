@@ -1,33 +1,43 @@
 package com.eazyschool.model;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class Profile {
 
-    @NotBlank
+    @NotBlank(message="Name must not be blank")
+    @Size(min=3, message="Name must be at least 3 characters long")
     private String name;
 
-    @NotBlank
+    @NotBlank(message="Mobile number must not be blank")
+    @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
     private String mobileNumber;
 
-    @NotBlank
+    @NotBlank(message="Email must not be blank")
+    @Email(message = "Please provide a valid email address" )
     private String email;
 
-    @NotBlank
+    @NotBlank(message="Address1 must not be blank")
+    @Size(min=5, message="Address1 must be at least 5 characters long")
     private String address1;
 
-    @NotBlank
     private String address2;
 
-    @NotBlank
+    @NotBlank(message="City must not be blank")
+    @Size(min=5, message="City must be at least 3 characters long")
     private String city;
 
-    @NotBlank
+    @NotBlank(message="State must not be blank")
+    @Size(min=5, message="State must be at least 3 characters long")
     private String state;
 
-    @NotBlank
+    @NotBlank(message="Zip Code must not be blank")
     private String zipCode;
 
 }

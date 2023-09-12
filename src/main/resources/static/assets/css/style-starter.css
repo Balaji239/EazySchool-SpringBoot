@@ -21611,3 +21611,8 @@ th > a:hover {
   color: var(--primary-color);
   text-decoration: underline;
 }
+
+.control-label:after {
+   content:"*";
+   color:red;
+}
