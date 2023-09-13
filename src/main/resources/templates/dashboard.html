@@ -55,7 +55,7 @@ Author URL: http://w3layouts.com
             <div class="row m-t-25">
                 <div class="col-sm-6 col-lg-3">
                     <a th:href="@{/displayProfile}">
-                        <div class="overview-item overview-item--c4">
+                        <div class="overview-item overview-item--c4 text-center">
                             <div class="overview__inner">
                                 <div class="overview-box clearfix">
                                     <div class="icon">
@@ -71,7 +71,7 @@ Author URL: http://w3layouts.com
                 </div>
                 <div class="col-sm-6 col-lg-3" sec:authorize="hasRole('ROLE_ADMIN')">
                     <a th:href="@{/displayMessages/page/1?sortField=name&sortDir=desc}">
-                    <div class="overview-item overview-item--c3">
+                    <div class="overview-item overview-item--c3 text-center">
                         <div class="overview__inner">
                             <div class="overview-box clearfix">
                                 <div class="icon">
@@ -87,7 +87,7 @@ Author URL: http://w3layouts.com
                 </div>
                 <div class="col-sm-6 col-lg-3" sec:authorize="hasRole('ROLE_ADMIN')">
                     <a th:href="@{/admin/displayClasses}">
-                        <div class="overview-item overview-item--c1">
+                        <div class="overview-item overview-item--c1 text-center">
                             <div class="overview__inner">
                                 <div class="overview-box clearfix">
                                     <div class="icon">
@@ -103,7 +103,7 @@ Author URL: http://w3layouts.com
                 </div>
                 <div class="col-sm-6 col-lg-3" sec:authorize="hasRole('ROLE_ADMIN')">
                     <a th:href="@{/admin/displayCourses}">
-                        <div class="overview-item overview-item--c2">
+                        <div class="overview-item overview-item--c2 text-center">
                             <div class="overview__inner">
                                 <div class="overview-box clearfix">
                                     <div class="icon">
@@ -119,7 +119,7 @@ Author URL: http://w3layouts.com
                 </div>
                 <div class="col-sm-6 col-lg-3" sec:authorize="hasRole('ROLE_STUDENT')">
                     <a th:href="@{/student/displayCourses}">
-                        <div class="overview-item overview-item--c3">
+                        <div class="overview-item overview-item--c3 text-center">
                             <div class="overview__inner">
                                 <div class="overview-box clearfix">
                                     <div class="icon">

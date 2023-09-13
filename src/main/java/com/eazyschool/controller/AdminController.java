@@ -106,7 +106,6 @@ public class AdminController {
     @GetMapping("/viewStudents")
     public String viewStudents(Model model, @RequestParam int id,@RequestParam(required = false) String error) {
         Optional<Course> course = coursesRepository.findById(id);
-        System.out.println("Course persons are" + course.get().getPersons());
         model.addAttribute("course",course.get());
         model.addAttribute("person",new Person());
         if(error != null) {

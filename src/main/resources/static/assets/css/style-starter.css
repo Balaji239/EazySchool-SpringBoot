@@ -21431,11 +21431,11 @@ h4.inner-text-title {
     }
 }
 
-@media (max-width: 991px) {
+/*@media (max-width: 991px) {
     .overview-box .icon {
         font-size: 46px;
     }
-}
+}*/
 
 .overview-box .text {
     font-weight: 300;
